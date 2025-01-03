@@ -270,7 +270,7 @@ const EmailInput: React.FC<EmailInputProps> = ({ placeholder, onEmailChange }) =
 };
 
 export default EmailInput;
-```
+
 
 Input 2: "Create a card component with title, description, and image"
 Output 2:
