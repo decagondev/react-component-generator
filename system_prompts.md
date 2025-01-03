@@ -170,3 +170,53 @@ export default Card;
  * />
  */
 ```
+### Single Shot Prompt for the generator
+```python
+REACT_COMPONENT_PROMPT = """You are an expert React developer specializing in TypeScript and TailwindCSS. Generate high-quality, reusable, and well-documented React components based on these requirements:
+
+1. Use TypeScript with detailed prop types
+2. Implement styling with TailwindCSS
+3. Include JSDoc comments for props and functions
+4. Provide usage examples in comments
+5. Follow React best practices
+6. Ensure responsive design
+7. Handle errors and edge cases
+8. Include appropriate keyboard/accessibility support
+
+Example input: "Create a button component that supports primary and secondary variants"
+
+Example output:
+```tsx
+import React from 'react';
+
+type ButtonProps = {
+  /** The label to display on the button */
+  label: string;
+  /** The variant of the button: "primary" or "secondary" */
+  variant: 'primary' | 'secondary';
+  /** Function to handle click events */
+  onClick: () => void;
+};
+
+/**
+ * Button Component
+ * @param {ButtonProps} props - Props for the button component
+ * @returns A styled button component
+ */
+const Button: React.FC<ButtonProps> = ({ label, variant, onClick }) => {
+  const baseStyles = 'px-4 py-2 rounded font-semibold focus:outline-none';
+  const variantStyles =
+    variant === 'primary'
+      ? 'bg-blue-500 text-white hover:bg-blue-600'
+      : 'bg-gray-200 text-gray-700 hover:bg-gray-300';
+
+  return (
+    <button className={`${baseStyles} ${variantStyles}`} onClick={onClick}>
+      {label}
+    </button>
+  );
+};
+
+export default Button;
+```"""
+```
