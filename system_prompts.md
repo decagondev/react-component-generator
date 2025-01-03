@@ -23,7 +23,7 @@ Create a button component that supports primary and secondary variants and handl
 
 **Implementation:**
 ```tsx
-import React from 'react';
+import React, { ReactElement } from 'react';
 
 type ButtonProps = {
   /** The label to display on the button */
@@ -39,7 +39,7 @@ type ButtonProps = {
  * @param {ButtonProps} props - Props for the button component
  * @returns A styled button component
  */
-const Button: React.FC<ButtonProps> = ({ label, variant, onClick }) => {
+export const Button = ({ label, variant, onClick }: ButtonProps): ReactElement => {
   const baseStyles = 'px-4 py-2 rounded font-semibold focus:outline-none';
   const variantStyles =
     variant === 'primary'
@@ -52,8 +52,6 @@ const Button: React.FC<ButtonProps> = ({ label, variant, onClick }) => {
     </button>
   );
 };
-
-export default Button;
 
 /**
  * Example Usage:
@@ -75,7 +73,7 @@ Create an input component for email addresses with validation.
 
 **Implementation:**
 ```tsx
-import React, { useState } from 'react';
+import React, { ReactElement, useState } from 'react';
 
 type EmailInputProps = {
   /** Placeholder text for the input field */
@@ -89,10 +87,10 @@ type EmailInputProps = {
  * @param {EmailInputProps} props - Props for the email input component
  * @returns A styled input component for email addresses
  */
-const EmailInput: React.FC<EmailInputProps> = ({ placeholder, onEmailChange }) => {
-  const [email, setEmail] = useState('');
+export const EmailInput = ({ placeholder, onEmailChange }: EmailInputProps): ReactElement => {
+  const [email, setEmail] = useState<string>('');
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
     const value = e.target.value;
     setEmail(value);
     onEmailChange(value);
@@ -108,8 +106,6 @@ const EmailInput: React.FC<EmailInputProps> = ({ placeholder, onEmailChange }) =
     />
   );
 };
-
-export default EmailInput;
 
 /**
  * Example Usage:
@@ -130,7 +126,7 @@ Create a card component that accepts a title, description, and an image.
 
 **Implementation:**
 ```tsx
-import React from 'react';
+import React, { ReactElement } from 'react';
 
 type CardProps = {
   /** Title of the card */
@@ -146,7 +142,7 @@ type CardProps = {
  * @param {CardProps} props - Props for the card component
  * @returns A styled card component
  */
-const Card: React.FC<CardProps> = ({ title, description, imageUrl }) => {
+export const Card = ({ title, description, imageUrl }: CardProps): ReactElement => {
   return (
     <div className="max-w-sm rounded overflow-hidden shadow-lg">
       <img className="w-full" src={imageUrl} alt={title} />
@@ -157,8 +153,6 @@ const Card: React.FC<CardProps> = ({ title, description, imageUrl }) => {
     </div>
   );
 };
-
-export default Card;
 
 /**
  * Example Usage:
@@ -187,7 +181,7 @@ Example input: "Create a button component that supports primary and secondary va
 
 Example output:
 ```tsx
-import React from 'react';
+import React, { ReactElement } from 'react';
 
 type ButtonProps = {
   /** The label to display on the button */
@@ -203,7 +197,7 @@ type ButtonProps = {
  * @param {ButtonProps} props - Props for the button component
  * @returns A styled button component
  */
-const Button: React.FC<ButtonProps> = ({ label, variant, onClick }) => {
+export const Button = ({ label, variant, onClick }: ButtonProps): ReactElement => {
   const baseStyles = 'px-4 py-2 rounded font-semibold focus:outline-none';
   const variantStyles =
     variant === 'primary'
@@ -217,7 +211,6 @@ const Button: React.FC<ButtonProps> = ({ label, variant, onClick }) => {
   );
 };
 
-export default Button;
 ```"""
 ```
 
@@ -235,7 +228,7 @@ Here are two examples of expected input/output pairs:
 Input 1: "Create an email input component with validation"
 Output 1:
 ```tsx
-import React, { useState } from 'react';
+import React, { ReactElement, useState } from 'react';
 
 type EmailInputProps = {
   /** Placeholder text for the input field */
@@ -249,10 +242,10 @@ type EmailInputProps = {
  * @param {EmailInputProps} props - Props for the email input component
  * @returns A styled input component for email addresses
  */
-const EmailInput: React.FC<EmailInputProps> = ({ placeholder, onEmailChange }) => {
-  const [email, setEmail] = useState('');
+export const EmailInput = ({ placeholder, onEmailChange }: EmailInputProps): ReactElement => {
+  const [email, setEmail] = useState<string>('');
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
     const value = e.target.value;
     setEmail(value);
     onEmailChange(value);
@@ -269,13 +262,10 @@ const EmailInput: React.FC<EmailInputProps> = ({ placeholder, onEmailChange }) =
   );
 };
 
-export default EmailInput;
-
-
 Input 2: "Create a card component with title, description, and image"
 Output 2:
 ```tsx
-import React from 'react';
+import React, { ReactElement } from 'react';
 
 type CardProps = {
   /** Title of the card */
@@ -291,7 +281,7 @@ type CardProps = {
  * @param {CardProps} props - Props for the card component
  * @returns A styled card component
  */
-const Card: React.FC<CardProps> = ({ title, description, imageUrl }) => {
+export const Card = ({ title, description, imageUrl }: CardProps): ReactElement => {
   return (
     <div className="max-w-sm rounded overflow-hidden shadow-lg">
       <img className="w-full" src={imageUrl} alt={title} />
@@ -302,7 +292,5 @@ const Card: React.FC<CardProps> = ({ title, description, imageUrl }) => {
     </div>
   );
 };
-
-export default Card;
 ```"""
 ```
