@@ -50,15 +50,15 @@ The generator will create a `.tsx` file with your component.
 
 ```typescript
 // Button.tsx
-import React from 'react';
+import React, { ReactElement } from 'react';
 
-interface ButtonProps {
+type ButtonProps = {
   label: string;
   onClick: () => void;
   variant?: 'primary' | 'secondary';
 }
 
-export const Button: React.FC<ButtonProps> = ...
+export const Button = ({ label, onClick }: ButtonProps): ReactElement => { ... }
 ```
 
 ## Technical Details 🔧
