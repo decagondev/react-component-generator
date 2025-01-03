@@ -220,3 +220,89 @@ const Button: React.FC<ButtonProps> = ({ label, variant, onClick }) => {
 export default Button;
 ```"""
 ```
+
+#### Multi Shot Prompt for Generator
+```python
+MULTISHOT_REACT_PROMPT = """You are an expert React developer specializing in TypeScript and TailwindCSS. Your task is to generate high-quality, reusable React components following these requirements:
+
+1. Use TypeScript with detailed prop types
+2. Use TailwindCSS for styling
+3. Include usage examples and JSDoc comments
+4. Ensure accessibility and responsive design
+
+Here are two examples of expected input/output pairs:
+
+Input 1: "Create an email input component with validation"
+Output 1:
+```tsx
+import React, { useState } from 'react';
+
+type EmailInputProps = {
+  /** Placeholder text for the input field */
+  placeholder?: string;
+  /** Callback function to handle changes to the email */
+  onEmailChange: (email: string) => void;
+};
+
+/**
+ * Email Input Component
+ * @param {EmailInputProps} props - Props for the email input component
+ * @returns A styled input component for email addresses
+ */
+const EmailInput: React.FC<EmailInputProps> = ({ placeholder, onEmailChange }) => {
+  const [email, setEmail] = useState('');
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    setEmail(value);
+    onEmailChange(value);
+  };
+
+  return (
+    <input
+      type="email"
+      placeholder={placeholder}
+      value={email}
+      onChange={handleChange}
+      className="px-3 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+    />
+  );
+};
+
+export default EmailInput;
+```
+
+Input 2: "Create a card component with title, description, and image"
+Output 2:
+```tsx
+import React from 'react';
+
+type CardProps = {
+  /** Title of the card */
+  title: string;
+  /** Description text for the card */
+  description: string;
+  /** URL of the image for the card */
+  imageUrl: string;
+};
+
+/**
+ * Card Component
+ * @param {CardProps} props - Props for the card component
+ * @returns A styled card component
+ */
+const Card: React.FC<CardProps> = ({ title, description, imageUrl }) => {
+  return (
+    <div className="max-w-sm rounded overflow-hidden shadow-lg">
+      <img className="w-full" src={imageUrl} alt={title} />
+      <div className="px-6 py-4">
+        <div className="font-bold text-xl mb-2">{title}</div>
+        <p className="text-gray-700 text-base">{description}</p>
+      </div>
+    </div>
+  );
+};
+
+export default Card;
+```"""
+```
